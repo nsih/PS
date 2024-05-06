@@ -4,14 +4,24 @@ from array import array
 
 import sys
 
-x,y,w,h = map(int,sys.stdin.readline().split())
-print (min(x,w-x,y,h-y))
+n = int(sys.stdin.readline())
+if n == 1:
+    print()
+else:
+    while n != 1:
+        for i in range(2,n+1):
+            if n%i == 0:
+                n = n//i
+                print(i)
+                break
 
 '''
 def factorization(n):
     factors = []
-    i = 2.0
-    if n % i == 0:  # n을 i로 나눴을 때 나머지가 0인 경우 `
+    i = 2
+
+    while i * i <= n:  # i가 n의 제곱근보다 작거나 같을 때까지 반복
+        if n % i == 0:  # n을 i로 나눴을 때 나머지가 0인 경우
             factors.append(i)  # i는 n의 소인수 중 하나
             n //= i  # n을 i로 나눈 몫으로 업데이트
         else:
