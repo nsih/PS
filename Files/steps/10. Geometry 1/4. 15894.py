@@ -5,9 +5,6 @@ from array import array
 import collections
 import sys
 
-n = int(sys.stdin.readline())
+a = int(sys.stdin.readline())
 
-print(1)
-print(0)
-
-T(0)
+print(a*4)
