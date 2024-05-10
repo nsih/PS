@@ -1,15 +1,17 @@
 #a,b = map(int,sys.stdin.readline().split())
-
+#L = []
+#L.extend(list(map(int,sys.stdin.readline().split())))
 from array import array
-
 import collections
 import sys
+a, b, c, d, e, f = map(int,sys.stdin.readline().split())
+print((c*e-b*f)//(a*e-b*d), (a*f-d*c)//(a*e-b*d))
+'''
+ax + by = c
+dx + ey = f
 
-a0,a1 = map(int,sys.stdin.readline().split())
-c = int(sys.stdin.readline())
-n0 = int(sys.stdin.readline())
+ad x + bd y = cd
+ad x + ae y = fa
 
-if c*n0 >= (a0*n0)+a1 and a0 <= c:
-    print(1)
-else:
-    print(0)
+(bd-ae) y = cd-fa
+'''
