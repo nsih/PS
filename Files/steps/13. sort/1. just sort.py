@@ -12,6 +12,5 @@ for _ in range(N):
 
 arr.sort()
 
-
 for item in arr:
     print(item)

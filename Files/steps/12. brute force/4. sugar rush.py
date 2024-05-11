@@ -6,12 +6,13 @@ import collections
 import sys
 N = int(sys.stdin.readline())
 arr = []
+for i in range(0, N//5+1):
+    for j in range(0, N//3+1):
+        if N - (5 * i) - (3 * j) == 0:
+            arr.append(i+j)
 
-for _ in range(N):
-    arr.append(int(sys.stdin.readline()))
-
-arr.sort()
-
-
-for item in arr:
-    print(item)
+print(len(arr))
+if len(arr) == 0:
+    print(-1)
+else:
+    print(min(arr))
