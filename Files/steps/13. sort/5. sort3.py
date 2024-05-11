@@ -1,18 +1,16 @@
 #a,b = map(int,sys.stdin.readline().split())
 #L = []
 #L.extend(list(map(int,sys.stdin.readline().split())))
-#arr.sort(key=lambda x: (len(x),ord(x[0])))
 from array import array
 import collections
 import sys
-
 N = int(sys.stdin.readline())
-arr = []
+arr = [0] * 10001
 
 for _ in range(N):
-    arr.append( list(map(int,sys.stdin.readline().split()) ))
-
-arr.sort(key=lambda x: (len(x),ord(x[0])))
+    arr[int(sys.stdin.readline())] += 1
 
 for i in range(len(arr)):
-    print(arr[i][0],arr[i][1])
+    if arr[i] != 0:
+        for j in range(arr[i]):
+            print(i)
