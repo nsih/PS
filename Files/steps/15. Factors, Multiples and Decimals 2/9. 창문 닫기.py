@@ -38,26 +38,4 @@ import math
 from functools import reduce
 import sys
 
-prime = []
-check = [0] * 1000001
-check[0] = 1
-check[1] = 1
-
-for i in range(2, 1000001):
-    if check[i] == 0:
-        prime.append(i)
-        for j in range(2*i, 1000001, i):
-            check[j] = 1
-
-M = int(sys.stdin.readline())
-
-for i in range(M):
-    N = int(sys.stdin.readline())
-    count = 0
-    for item in prime:
-        if N//2 >= item:
-            if check[N-item] == 0:
-                count += 1
-        else:
-            break
-    print(count)
+print(int(int(sys.stdin.readline())**0.5))
