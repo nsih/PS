@@ -69,38 +69,51 @@ from functools import reduce
 import math
 from functools import reduce
 import sys
-stack = []
-while True:
-    str = sys.stdin.readline()
-    str = str[:-1]
-    stack.clear()
 
-    if str == ".":
-        break;
+class Stack:
+    def __init__(self):
+        self.stack = []
+
+    def push(self,item):
+        self.stack.append(item)
+
+    def pop(self):
+        if not self.isEmpty():
+            #print(self.stack[-1])
+            return self.stack.pop()
+        else:
+            print("-1")
+
+    def peek(self):
+        if not self.isEmpty():
+            return self.stack[-1]
+        else:
+            print("-1")
+
+    def isEmpty(self):
+        return len(self.stack) == 0
+
+    def __str__(self):
+        return str(self.stack)
+
+T = int(sys.stdin.readline())
+stack = Stack()
+
+for _ in range(T):
+    str = sys.stdin.readline().strip()
+    stack.stack.clear()
 
     for i in range(len(str)):
         if str[i] == '(':
-            stack.append('(')
-
-        elif str[i] == ')':
-            if len(stack) > 0 and stack[-1] == '(':
+            stack.push('(')
+        else:
+            if len(stack.stack) > 0:
                 stack.pop()
             else:
-                print("no")
+                print("NO")
                 break
-
-        elif str[i] == '[':
-            stack.append('[')
-
-        elif str[i] == ']':
-            if len(stack) > 0 and stack[-1] == '[':
-                stack.pop()
-            else:
-                print("no")
-                break
-
         if i == len(str)-1:
-            if len(stack) == 0:
-                print("yes")
+            if len(stack.stack) == 0:
+                print("YES")
             else:
-                print("no")
+                print("NO")

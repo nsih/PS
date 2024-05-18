@@ -69,38 +69,52 @@ from functools import reduce
 import math
 from functools import reduce
 import sys
-stack = []
-while True:
-    str = sys.stdin.readline()
-    str = str[:-1]
-    stack.clear()
 
-    if str == ".":
-        break;
+class Stack:
+    def __init__(self):
+        self.stack = []
 
-    for i in range(len(str)):
-        if str[i] == '(':
-            stack.append('(')
+    def push(self,item):
+        self.stack.append(item)
 
-        elif str[i] == ')':
-            if len(stack) > 0 and stack[-1] == '(':
-                stack.pop()
-            else:
-                print("no")
-                break
+    def pop(self):
+        if not self.isEmpty():
+            #print(self.stack[-1])
+            return self.stack.pop()
+        else:
+            print("-1")
 
-        elif str[i] == '[':
-            stack.append('[')
+    def peek(self):
+        if not self.isEmpty():
+            return self.stack[-1]
+        else:
+            print("-1")
 
-        elif str[i] == ']':
-            if len(stack) > 0 and stack[-1] == '[':
-                stack.pop()
-            else:
-                print("no")
-                break
+    def isEmpty(self):
+        return len(self.stack) == 0
 
-        if i == len(str)-1:
-            if len(stack) == 0:
-                print("yes")
-            else:
-                print("no")
+    def size(self):
+        return len(self.stack)
+
+    def __str__(self):
+        return str(self.stack)
+
+
+stack = Stack()
+
+N = int(sys.stdin.readline())
+
+for i in range(N):
+    n = int(sys.stdin.readline())
+
+    if n == 0:
+        stack.pop()
+
+    else:
+        stack.push(n)
+
+sum = 0
+for i in range(len(stack.stack)):
+    sum += stack.stack[i]
+
+print(sum)

@@ -69,38 +69,31 @@ from functools import reduce
 import math
 from functools import reduce
 import sys
-stack = []
-while True:
-    str = sys.stdin.readline()
-    str = str[:-1]
-    stack.clear()
 
-    if str == ".":
-        break;
+T = int(sys.stdin.readline())
 
-    for i in range(len(str)):
-        if str[i] == '(':
-            stack.append('(')
+for i in range(T):
+    str = sys.stdin.readline().strip()
 
-        elif str[i] == ')':
-            if len(stack) > 0 and stack[-1] == '(':
-                stack.pop()
-            else:
-                print("no")
-                break
+    count1 = 0
+    count2 = 0
 
-        elif str[i] == '[':
-            stack.append('[')
+    if len(str) % 2 != 0:
+        print("NO")
+        continue
 
-        elif str[i] == ']':
-            if len(stack) > 0 and stack[-1] == '[':
-                stack.pop()
-            else:
-                print("no")
-                break
+    for j in range(len(str)):
+        if str[j] == '(':
+            count1 += 1
+        elif str[j] == ')':
+            count2 += 1
 
-        if i == len(str)-1:
-            if len(stack) == 0:
-                print("yes")
-            else:
-                print("no")
+        if count2 > count1:
+            print("NO")
+            break
+
+    if count1 == count2:
+        print("YES")
+    else:
+        if count1>count2:
+            print("NO")
