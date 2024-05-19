@@ -68,23 +68,40 @@ import math
 from functools import reduce
 import math
 from functools import reduce
-from collections import deque
 import sys
 
-N,K = map(int,sys.stdin.readline().split())
-list = [i for i in range(1, N + 1)]
-answer = []
-head = 0
+T = int(sys.stdin.readline())
+input = list(map(int,sys.stdin.readline().split()))
 
-for _ in range(N):
-    head = (head + K - 1) % len(list)
-    answer.append(list[head])
-    list.pop(head)
+start = input[:]
+middle = []
+end = []
 
-print("<",end='')
-for idx in range(len(answer)):
-    if idx != len(answer)-1:
-        print(answer[idx],end=', ')
+#1을 end에 넣기위한 단계
+for i in range(len(input)):
+    if input[i] == 1:
+        end.append(input[i])
+        start.remove(input[i])
+        break
     else:
-        print(answer[idx], end='')
-print(">",end='')
+        middle.append(input[i])
+        start.remove(input[i])
+#middle에서 end로 이동. 없으면 start에서 middle로 하나 데려와서 다시 검사
+while len(start):
+    if middle and end[-1] == middle[-1]-1:
+        end.append(middle[-1])
+        middle.pop()
+    else:
+        middle.append(start[0])
+        start.pop(0)
+#정리된 middle에서. end에 넣기위한 단계
+while len(middle):
+    if end[-1] == middle[-1]-1:
+        end.append(middle[-1])
+        middle.pop()
+    else:
+        print("Sad")
+        break
+
+if not len(middle) and not len(start):
+    print("Nice")

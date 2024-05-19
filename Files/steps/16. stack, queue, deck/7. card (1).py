@@ -68,23 +68,25 @@ import math
 from functools import reduce
 import math
 from functools import reduce
-from collections import deque
 import sys
 
-N,K = map(int,sys.stdin.readline().split())
-list = [i for i in range(1, N + 1)]
-answer = []
+N = int(sys.stdin.readline())
+
 head = 0
+tail = N
 
-for _ in range(N):
-    head = (head + K - 1) % len(list)
-    answer.append(list[head])
-    list.pop(head)
+arr = [0] * (N)
 
-print("<",end='')
-for idx in range(len(answer)):
-    if idx != len(answer)-1:
-        print(answer[idx],end=', ')
-    else:
-        print(answer[idx], end='')
-print(">",end='')
+for idx in range(0,N):
+    arr[idx] = idx+1
+
+
+while head < tail-1:
+    #print(arr)
+
+    head += 1
+    arr.append(arr[head])
+    tail += 1
+    head += 1
+
+print(arr[-1])

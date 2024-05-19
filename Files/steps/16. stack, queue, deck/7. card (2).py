@@ -68,23 +68,15 @@ import math
 from functools import reduce
 import math
 from functools import reduce
-from collections import deque
 import sys
+from collections import deque
 
-N,K = map(int,sys.stdin.readline().split())
-list = [i for i in range(1, N + 1)]
-answer = []
-head = 0
+N = int(sys.stdin.readline())
 
-for _ in range(N):
-    head = (head + K - 1) % len(list)
-    answer.append(list[head])
-    list.pop(head)
+queue = deque(range(1, N + 1))
 
-print("<",end='')
-for idx in range(len(answer)):
-    if idx != len(answer)-1:
-        print(answer[idx],end=', ')
-    else:
-        print(answer[idx], end='')
-print(">",end='')
+while len(queue) > 1:
+    queue.popleft()  # 앞에서 하나 제거
+    queue.append(queue.popleft())  # 앞에서 하나 제거하고 뒤에 추가
+
+print(queue[0])
