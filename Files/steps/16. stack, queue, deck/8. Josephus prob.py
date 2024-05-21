@@ -71,58 +71,20 @@ from functools import reduce
 from collections import deque
 import sys
 
-T = int(sys.stdin.readline())
-deck = deque()
+N,K = map(int,sys.stdin.readline().split())
+list = [i for i in range(1, N + 1)]
+answer = []
+head = 0
 
-for _ in range(T):
-    inputValue = sys.stdin.readline().strip()
-    inputValues = inputValue.split()
-    A = 0
-    B = 0
+for _ in range(N):
+    head = (head + K - 1) % len(list)
+    answer.append(list[head])
+    list.pop(head)
 
-    if len(inputValues) <= 1:
-        A = int(inputValues[0])
+print("<",end='')
+for idx in range(len(answer)):
+    if idx != len(answer)-1:
+        print(answer[idx],end=', ')
     else:
-        A = int(inputValues[0])
-        B = int(inputValues[1])
-
-    if A == 1:
-        deck.appendleft(B)
-
-    elif A == 2:
-        deck.append(B)
-
-    elif A == 3:
-        if len(deck):
-            print(deck[0])
-            deck.popleft()
-        else:
-            print(-1)
-
-    elif A == 4:
-        if len(deck):
-            print(deck[-1])
-            deck.pop()
-        else:
-            print(-1)
-
-    elif A == 5:
-        print(len(deck))
-
-    elif A == 6:
-        if len(deck):
-            print(0)
-        else:
-            print(1)
-
-    elif A == 7:
-        if len(deck):
-            print(deck[0])
-        else:
-            print(-1)
-
-    elif A == 8:
-        if len(deck):
-            print(deck[-1])
-        else:
-            print(-1)
+        print(answer[idx], end='')
+print(">",end='')
