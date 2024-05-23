@@ -48,7 +48,7 @@ import sys
 N = int(sys.stdin.readline())
 list = list(map(int,sys.stdin.readline().split()))
 answer = []
-idx = 10000
+idx = 1
 answer.append(idx)
 for i in range(N-1):
     vec = list[idx-1]
