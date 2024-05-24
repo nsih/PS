@@ -34,44 +34,19 @@ for i in range(2, 1000001):
 '''
 #
 """
-#메모이제이션 팩토리얼
-memo = {0: 1, 1: 1}
-def facMem(n):
-    if n in memo:   #캐싱된 것 중에 N이 있으면 바로 N번째 반환
-        return memo[n]
-
-    #아니면 N을 캐시메모리에서 리턴할 수 있을때 까지 캐싱된걸 활용해 dic에 추가
-    memo[n] = n * facMem(n-1)
-    return memo[n]
+.
 """
 import select
 from array import array
 import collections
 import math
 from functools import reduce
+import math
 from functools import reduce
 from collections import deque
-import math
 import sys
-
-memo = {0: 1, 1: 1}
-def facMem(n):
-    if n in memo:   #캐싱된 것 중에 N이 있으면 바로 N번째 반환
-        return memo[n]
-
-    #아니면 N을 캐시메모리에서 리턴할 수 있을때 까지 캐싱된걸 활용해 dic에 추가
-    memo[n] = n * facMem(n-1)
-    return memo[n]
-
-T = int(sys.stdin.readline())
-
-for _ in range(T):
-    N, M = map(int,sys.stdin.readline().split())
-
-    a = 1
-
-    for i in range(M,M-N,-1):
-        a *= i
-
-    print(a // facMem(N))
-
+n = int(sys.stdin.readline())
+answer = 1
+for i in range (1,n+1):
+    answer*=i
+print(answer)
