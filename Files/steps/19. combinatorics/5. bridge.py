@@ -55,7 +55,6 @@ import math
 import sys
 
 memo = {0: 1, 1: 1}
-
 def facMem(n):
     if n in memo:   #캐싱된 것 중에 N이 있으면 바로 N번째 반환
         return memo[n]
@@ -64,6 +63,14 @@ def facMem(n):
     memo[n] = n * facMem(n-1)
     return memo[n]
 
-N, K = map(int,sys.stdin.readline().split())
+T = int(sys.stdin.readline())
 
-print(facMem(N) // (facMem(N-K)*facMem(K)))
+for _ in range(T):
+    N, M = map(int,sys.stdin.readline().split())
+
+    a = 1
+
+    for i in range(M,M-N,-1):
+        a *= i
+
+    print(a // facMem(N))
