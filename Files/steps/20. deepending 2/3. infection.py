@@ -48,23 +48,22 @@ from array import array
 import collections
 import math
 from functools import reduce
+from functools import reduce
 from collections import deque
 import math
-from collections import Counter
 import sys
+T = int(sys.stdin.readline())
 
-N,M = map(int,sys.stdin.readline().split())
+cDic = {}
+cDic['ChongChong'] = 0
 
-lst = []
+answer = 0
+for _ in range(T):
+    D1, D2 = sys.stdin.readline().strip().split()
+    if D1 in cDic or D2 in cDic:
+        if D1 not in cDic:
+            cDic[D1] = 0
+        else:
+            cDic[D2] = 0
 
-for _ in range(N):
-    s = sys.stdin.readline().strip()
-    if len(s) >= M:
-        lst.append(s)
-
-counter = Counter(lst)
-
-counter = sorted(counter.items(), key = lambda x: (-x[1], -len(x[0]), x[0]))
-
-for item in counter:
-    print(item[0])
+print(len(cDic))

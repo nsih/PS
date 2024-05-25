@@ -53,18 +53,33 @@ import math
 from collections import Counter
 import sys
 
-N,M = map(int,sys.stdin.readline().split())
-
+T = int(sys.stdin.readline())
 lst = []
+for _ in range(T):
+    lst.append(int(sys.stdin.readline()))
 
-for _ in range(N):
-    s = sys.stdin.readline().strip()
-    if len(s) >= M:
-        lst.append(s)
+#산술평균
+print( round(sum(lst)/len(lst)) )
+
+#중앙값
+sLst = sorted(lst)
+
+if T % 2 == 0:
+    print((sLst[T//2] + sLst[T//2+1])//2)
+else:
+    print(sLst[T//2])
+
+#최빈값
 
 counter = Counter(lst)
+maxCount = max(counter.values())
 
-counter = sorted(counter.items(), key = lambda x: (-x[1], -len(x[0]), x[0]))
+maxes = [item for item, count in counter.items() if count == maxCount]
 
-for item in counter:
-    print(item[0])
+if len(maxes) > 1:
+    print(sorted(maxes)[1])
+else:
+    print(sorted(maxes)[0])
+
+#범위
+print(max(lst)-min(lst))
