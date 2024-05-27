@@ -54,46 +54,18 @@ import math
 from collections import Counter
 import sys
 
-def merge_sort(A, p, r,K):
-    if p < r:
-        q = (p + r) // 2
-        merge_sort(A, p, q,K)
-        merge_sort(A, q + 1, r,K)
-        merge(A, p, q, r,K)
-def merge(A, p, q, r,K):
-    i = p
-    j = q + 1
-    tmp = []
+fLst = [0,1,1]
 
-    while i <= q and j <= r:
-        if A[i] <= A[j]:
-            tmp.append(A[i])
-            i += 1
-        else:
-            tmp.append(A[j])
-            j += 1
+def fibo (N):
+    if N == 0:
+        return 0
+    elif N == 1 or N == 2:
+        return 1
+    else:
+        return fibo(N-1)+fibo(N-2)
 
-    while i <= q:
-        tmp.append(A[i])
-        i += 1
-    while j <= r:
-        tmp.append(A[j])
-        j += 1
-    for t in range(len(tmp)):
-        A[p + t] = tmp[t]
-        merge_sort.counter += 1
-        if merge_sort.counter == K:
-            merge_sort.value = tmp[t]
+    print(fLst)
 
+N = int(sys.stdin.readline())
 
-N,K = map(int,sys.stdin.readline().split())
-aLst = list(map(int,sys.stdin.readline().split()))
-
-merge_sort.counter = 0
-merge_sort.value = 0
-merge_sort(aLst,0,len(aLst)-1,K)
-
-if merge_sort.value:
-    print(merge_sort.value)
-else:
-    print(-1)
+print(fibo(N))

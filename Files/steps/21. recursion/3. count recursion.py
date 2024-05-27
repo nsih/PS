@@ -54,46 +54,22 @@ import math
 from collections import Counter
 import sys
 
-def merge_sort(A, p, r,K):
-    if p < r:
-        q = (p + r) // 2
-        merge_sort(A, p, q,K)
-        merge_sort(A, q + 1, r,K)
-        merge(A, p, q, r,K)
-def merge(A, p, q, r,K):
-    i = p
-    j = q + 1
-    tmp = []
+count = 0
+def recursion(s, l, r):
+    global count
+    count += 1
 
-    while i <= q and j <= r:
-        if A[i] <= A[j]:
-            tmp.append(A[i])
-            i += 1
-        else:
-            tmp.append(A[j])
-            j += 1
+    if l >= r: return 1
+    elif s[l] != s[r]: return 0
+    else: return recursion(s, l+1, r-1)
 
-    while i <= q:
-        tmp.append(A[i])
-        i += 1
-    while j <= r:
-        tmp.append(A[j])
-        j += 1
-    for t in range(len(tmp)):
-        A[p + t] = tmp[t]
-        merge_sort.counter += 1
-        if merge_sort.counter == K:
-            merge_sort.value = tmp[t]
+def isPalindrome(s):
+    return recursion(s, 0, len(s)-1)
 
+T = int(sys.stdin.readline())
+for _ in range(T):
+    s = sys.stdin.readline().strip()
 
-N,K = map(int,sys.stdin.readline().split())
-aLst = list(map(int,sys.stdin.readline().split()))
+    count = 0
 
-merge_sort.counter = 0
-merge_sort.value = 0
-merge_sort(aLst,0,len(aLst)-1,K)
-
-if merge_sort.value:
-    print(merge_sort.value)
-else:
-    print(-1)
+    print(isPalindrome(s),count)

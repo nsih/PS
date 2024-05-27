@@ -32,7 +32,6 @@ for i in range(2, 1000001):
         for j in range(2*i, 1000001, i):
             check[j] = 1
 '''
-#memoization
 """
 #메모이제이션 팩토리얼
 memo = {0: 1, 1: 1}
@@ -54,46 +53,13 @@ import math
 from collections import Counter
 import sys
 
-def merge_sort(A, p, r,K):
-    if p < r:
-        q = (p + r) // 2
-        merge_sort(A, p, q,K)
-        merge_sort(A, q + 1, r,K)
-        merge(A, p, q, r,K)
-def merge(A, p, q, r,K):
-    i = p
-    j = q + 1
-    tmp = []
+def factorial (N):
+    if N == 0 or N == 1:
+        return 1
+    else:
+        return factorial(N-1) * N
 
-    while i <= q and j <= r:
-        if A[i] <= A[j]:
-            tmp.append(A[i])
-            i += 1
-        else:
-            tmp.append(A[j])
-            j += 1
+N = int(sys.stdin.readline())
 
-    while i <= q:
-        tmp.append(A[i])
-        i += 1
-    while j <= r:
-        tmp.append(A[j])
-        j += 1
-    for t in range(len(tmp)):
-        A[p + t] = tmp[t]
-        merge_sort.counter += 1
-        if merge_sort.counter == K:
-            merge_sort.value = tmp[t]
+print(factorial(N))
 
-
-N,K = map(int,sys.stdin.readline().split())
-aLst = list(map(int,sys.stdin.readline().split()))
-
-merge_sort.counter = 0
-merge_sort.value = 0
-merge_sort(aLst,0,len(aLst)-1,K)
-
-if merge_sort.value:
-    print(merge_sort.value)
-else:
-    print(-1)
