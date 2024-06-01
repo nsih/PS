@@ -16,7 +16,7 @@ def DFS():
     for i in range(1,N+1):
         if i not in lst:
             lst.append(i)
-            BT()
+            DFS()
             lst.pop()
 
 N,M = map(int,sys.stdin.readline().split())
