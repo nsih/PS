@@ -5,8 +5,8 @@ lst = list(map(int,sys.stdin.readline().split()))
 
 rLst = lst[::-1]
 
-dp = [1]*n  #inc
-dp2 = [1]*n #dec
+dp = [1]*n
+dp2 = [1]*n
 for i in range(1,n):
     for j in range(i):
         if lst[i] > lst[j]:
