@@ -4,6 +4,8 @@
 #arr.sort(key=lambda x: (len(x),ord(x[0])))
 #iDict = {value: index for index, value in enumerate(arr)}
 
+
+
 #prime number
 '''
 #최대공약수
