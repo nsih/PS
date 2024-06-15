@@ -48,6 +48,10 @@ def facMem(n):
     return memo[n]
 """
 
+
+#is_uniform = all(arr[i][j] == arr[0][0] for i in range(slen) for j in range(slen))
+#배열 내 요소가 모두 같은지 확인하는 태크닉
+
 import select
 from array import array
 import collections
