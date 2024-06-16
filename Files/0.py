@@ -61,3 +61,8 @@ from collections import deque
 import math
 from collections import Counter
 import sys
+
+sLst = []
+for _ in range(n):
+    line = sys.stdin.readline().strip()
+    sLst.append(list(map(int, list(line))))
