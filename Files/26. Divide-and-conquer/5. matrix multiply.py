@@ -1,11 +1,13 @@
 import sys
 
 N,M = map(int,sys.stdin.readline().split())
+
 A = []
 for _ in range(N):
     A.append(list(map(int,sys.stdin.readline().split())))
 
 M,K = map(int,sys.stdin.readline().split())
+
 B = []
 for _ in range(M):
     B.append(list(map(int,sys.stdin.readline().split())))
