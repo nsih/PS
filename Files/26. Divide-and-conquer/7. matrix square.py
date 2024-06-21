@@ -27,9 +27,9 @@ def solB(A, B):
         return A
 
     tmp = solB(A, B // 2)
-    if B % 2:
+    if B % 2:#홀
         return solA(solA(tmp, tmp), A)
-    else:
+    else:#짝
         return solA(tmp, tmp)
 
 result = solB(M, B)
