@@ -1,4 +1,5 @@
 import sys
+
 def fib1(n):
     if n == 0:
         return 0

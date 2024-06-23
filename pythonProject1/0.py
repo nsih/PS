@@ -1,14 +1,26 @@
 import sys
 
-def sol(a,b,c):
-    a = a%c
-    ans = 1
+N,M = map(int,sys.stdin.readline().split())
+lst = list(map(int,sys.stdin.readline().split()))
 
-    while b>0:
-        if b%2 == 1:
-            ans = (ans*a)%c
+def sol(lst, M):
+    row, high = 0, max(lst)
 
-        b = b//2
-        a = a**2 %c
+    while row <= high:
+        mid = (row+high) // 2
 
-    return ans
+        x = 0
+        for i in range(N):
+            if lst[i] - mid > 0:
+                x += lst[i]-mid
+
+        if x >= M:  #필요한 양보다 자른게 많으면
+            result = mid
+            row = mid + 1   #더 높게 잘라본다
+
+        else:
+            high = mid - 1  #필요한 양을 못채우면 낮춰본다.
+
+    return result
+
+print(sol(lst,M))
