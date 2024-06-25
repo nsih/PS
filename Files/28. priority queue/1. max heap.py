@@ -3,15 +3,15 @@ import heapq
 
 N = int(sys.stdin.readline())
 
-absHeap = []
+maxHeap = []
 for _ in range(N):
     ip = int(sys.stdin.readline())
 
-    if ip != 0:
-        heapq.heappush(absHeap, (abs(ip),ip))
+    if ip > 0:
+        heapq.heappush(maxHeap, -ip)
 
     else:
-        if absHeap:
-            print(heapq.heappop(absHeap)[1])
+        if maxHeap:
+            print(-heapq.heappop(maxHeap))
         else:
             print(0)
