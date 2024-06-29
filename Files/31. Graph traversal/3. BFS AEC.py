@@ -9,7 +9,7 @@ def bfs(t):
 
     while queue:
         node = queue.popleft()
-        for i in sorted(line[node],reverse=True):
+        for i in sorted(line[node]):
             if visited[i] == 0:
                 cnt += 1
                 visited[i] = cnt
