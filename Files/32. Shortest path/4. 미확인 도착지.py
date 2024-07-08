@@ -51,7 +51,7 @@ for _ in range(T):
 
     result = []
     for end in tLst:
-        #s에서 시작해서 g->h나 h->g를 거져 end에 도착한 거리가 최단거리인가?
+        #s에서 시작해서 g->h나 h->g를 거져 tLst[i]에 도착한 거리가 최단거리인가?
         dp = Dijkstra(s)
 
         dp1 = Dijkstra(g)
