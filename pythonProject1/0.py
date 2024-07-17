@@ -1,29 +1,25 @@
-def two_pointer(n, lst):
-    lst.sort()
+def two_pointer(n,c, lst):
+    left, right = 0, 0
+    current_sum = 0
 
-    left, right = 0, n - 1
-    closest_sum = float('inf')
-    result = (0, 0)
+    cnt = 0
 
-    while left < right:
-        current_sum = lst[left] + lst[right]
+    while right < len(lst):
+        current_sum += lst[right]
+        right += 1
 
-        if abs(current_sum) < abs(closest_sum):
-            closest_sum = current_sum
-            result = (lst[left], lst[right])
+        while current_sum >= c:
+            cnt += 1
 
-        if current_sum < 0:
+            current_sum -= lst[left]
             left += 1
-        else:
-            right -= 1
 
-    return result
-
+    return cnt + 1
 
 import sys
 
-n = int(sys.stdin.readline())
-lst = list(map(int, sys.stdin.readline().split()))
+n,c = map(int, sys.stdin.readline().split())
 
-result = two_pointer(n, lst)
-print(result[0], result[1])
+lst = list(map(int,sys.stdin.readline().split()))
+
+print(two_pointer(n,c,lst))
