@@ -1,25 +1,48 @@
-def two_pointer(n,c, lst):
-    left, right = 0, 0
-    current_sum = 0
+def Dijkstra(start,end):
+    dp = [INF] * (100000 + 1)
+    dp[start] = 0
 
-    cnt = 0
+    Q = [(0, start)]
 
-    while right < len(lst):
-        current_sum += lst[right]
-        right += 1
+    while Q:
+        time, pos = heapq.heappop(Q)
 
-        while current_sum >= c:
-            cnt += 1
+        # 이미 최소면 뜀
+        if dp[pos] < time:
+            continue
 
-            current_sum -= lst[left]
-            left += 1
+        # -1
+        if pos - 1 >= 0:
+            nextPos = pos-1
+            nextTime = time+1
 
-    return cnt + 1
+            if nextTime < dp[nextPos]:
+                dp[nextPos] = nextTime
+                heapq.heappush(Q, (nextTime, nextPos))
+        # +1
+        if pos + 1 <= 100000:
+            nextPos = pos+1
+            nextTime = time+1
+
+            if nextTime < dp[nextPos]:
+                dp[nextPos] = nextTime
+                heapq.heappush(Q, (nextTime, nextPos))
+        # *2
+        if pos * 2 <= 100000:
+            nextPos = pos*2
+            nextTime = time
+
+            if nextTime < dp[nextPos]:
+                dp[nextPos] = nextTime
+                heapq.heappush(Q, (nextTime, nextPos))
+
+    return dp[end]
+
 
 import sys
+import heapq
 
-n,c = map(int, sys.stdin.readline().split())
+INF = sys.maxsize
+N, K = map(int, sys.stdin.readline().split())
 
-lst = list(map(int,sys.stdin.readline().split()))
-
-print(two_pointer(n,c,lst))
+print(Dijkstra(N,K))
