@@ -31,9 +31,6 @@ def find_LIS(n,lst):
     return(lis_len,lis_seq)
 
 
-    return
-
-
 import sys
 import heapq
 

@@ -18,14 +18,14 @@ def find_LIS(n, lst):
         else:
             lis.append(lst[i])
 
-        #기록
+        # 이전 요소의 인덱스를 기록
         index_at[pos] = i
         if pos > 0:
             prev_index[i] = index_at[pos - 1]
         else:
             prev_index[i] = -1
 
-    #복원
+    # LIS 길이 및 수열 복원
     lis_len = len(lis)
     lis_seq = []
     k = index_at[lis_len - 1]
