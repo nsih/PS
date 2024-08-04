@@ -20,7 +20,7 @@ def BFS(A, B):
 
             if not visitedLst[next_n]:  #방문 안했으면
                 visitedLst[next_n] = True
-                prevLst[next_n] = (n, nextC)    #이전노드, 연산
+                prevLst[next_n] = (n, nextC)
 
                 if next_n == B:
                     return prevLst
