@@ -28,6 +28,7 @@ case = 0
 while True:
     case += 1
     n,m = map(int,sys.stdin.readline().split())
+
     if n == 0 and m == 0:
         break
 
@@ -39,9 +40,11 @@ while True:
         temp[a].append(b)
         temp[b].append(a)
 
-    count = countTree(n,temp)
+    count = count_trees(n,temp)
+
 
     print(f'Case {case}: ', end='')
+
     if count == 0:
         print('No trees.')
     elif count == 1:
