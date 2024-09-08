@@ -80,16 +80,16 @@ for i in range(n):
                         break
                     if matrix[nx][ny] == 0:  # 0이면 진행, 거리+
                         dist += 1
-                    elif matrix[nx][ny] >= 2:  # 다른 섬을 만남
+                    elif matrix[nx][ny] >= 2:  # 다른 섬 찾음
                         if dist > 1:  # 거리가 2 이상인 경우만 간선으로 처리
                             otherIsland = matrix[nx][ny]
                             # 최소거나 최초일때 추가
                             if (currentIsland, otherIsland) not in minEdge or minEdge[(currentIsland, otherIsland)] > dist:
                                 minEdge[(currentIsland, otherIsland)] = dist
-                                minEdge[(otherIsland, currentIsland)] = dist  # 양방향 간선
+                                minEdge[(otherIsland, currentIsland)] = dist  # 간선 추가
                         break
 
-# 중복 제거된 간선 리스트로 변환
+# 중복 제거후 정렬
 edge = [(dist, u, v) for (u, v), dist in minEdge.items()]
 edge.sort()
 

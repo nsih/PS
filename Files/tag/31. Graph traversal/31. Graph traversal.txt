@@ -1,0 +1,108 @@
+=개요=
+연결된 그래프 노드를 순회.
+
+*DFS(깊이 우선)
+: 큐를 이용해서 가까운 노드들 부터 순회
+
+def bfs():
+    Q = deque([1])  #1에서 시작
+
+    while Q:
+        c = Q.popleft()
+        for i in graph[c]:
+            if visited[i] == 0:
+                Q.append(i)
+                visited[i] = 1
+
+*BFS(넓이 우선)
+: 재귀를 이용해서 깊이를 우선해 순회
+
+def dfs(t):
+    visited[t] = 1
+    graph[1].sort()
+    for i in graph[t]:
+        if visited[i] == 0:
+            visited[i] = 1
+            dfs(i)
+
+
+=활용처=
+*특정노드에서 다른 노드까지 연결이 되어있는가?
+*연결 되어있으면 최단거리는 얼마인가?
+*(가중치가 있는 간선이 있는 그래프의 최소 연결 비용은 MST가 더 적절하다.)
+
+=구현=
+
+*BFS : 최단거리 구하기
+def bfs(start):
+    dice = [1,2,3,4,5,6]
+    Q = deque([(시작 노드, n번째)])
+
+    while Q:
+        x,cnt = Q.popleft()
+
+        for dx in dice:
+            nx = x+dx	#다음 이동처
+
+            if nx == 100:	#도착지
+                return cnt
+
+            if 0 <= nx < 101:
+		#범위내의 노드 방문
+                if not visited[nx]:
+                    visited[nx] = True
+
+                    if graph[nx]:	#기타 조건이 있으면 (그래프에 nx 포털이 있으면)
+                        visited[nx] = True
+                        nx = graph[nx]
+                        Q.append((nx, cnt + 1))
+
+                    else:	#포털 없으면 그냥 진행
+                        Q.append((nx, cnt + 1))
+
+
+*DFS : 이분그래프 판별
+
+1. 순회하며 방문안한 정점에서 DFS 
+2. DFS 실패시 이분 그래프가 아니니 FALSE
+
+def dfs(start,group):
+    #집합을 기록
+    visited[start] = group
+
+    for i in graph[start]:
+        if not visited[i]:
+            a = dfs(i,-group)
+            if not a:
+                return False
+        elif visited[i] == visited[start]:
+            return False
+    return True
+
+
+import sys
+sys.setrecursionlimit(1000000)
+
+K = int(sys.stdin.readline())
+
+for _ in range(K):
+    V,E = map(int, sys.stdin.readline().split()) #정점, 간선
+
+    graph = [[] for _ in range(V+1)]
+
+    visited = [False]*(V+1)
+
+    for _ in range(E):  #간선 추가
+        u,v = map(int,sys.stdin.readline().split())
+        graph[u].append(v)
+        graph[v].append(u)
+
+    for i in range(1,V+1):
+        if not visited[i]:
+            result = dfs(i,1)
+            if not result:
+                break
+
+    print("YES" if result else "NO")
+
+

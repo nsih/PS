@@ -1,0 +1,84 @@
+=개요=
+A.K.A. Disjoint Set Union (흩어진 집합 합치기)
+노드가 같은 집합에 포함되어 있는지 확인하고 합치는 알고리즘
+
+
+=특징=
+상위 노드를 가리키는 컨테이너 parent를 기반으로 작동
+find 함수:	재귀적으로 호출되며, 최상위 노드를 반환. 
+		경로 압축 기법을 통해 트리의 높이를 줄인다.
+
+union 함수:	랭크 또는 사이즈에 기반하여 두 집합을 결합
+		find 함수를 이용해 다른 집합인지 여부 확인
+
+=활용처=
+*두 원소가 같은 집합에 포함되어 있는지를 확인하고 합침
+*이미 공통된 뿌리를 가진 두 정점이 연결됐는가를 확인하여 사이클 검출
+*MST
+	
+
+=구현=
+
+==기본==
+*Find : 두 정점의 뿌리가 공통된 노드를 가리키는지 확인 (재귀)
+def find(x):
+    if parent[x] != x:
+        parent[x] = find(parent[x])
+    return parent[x]
+
+*Union : find를 활용하여 두 정점의 뿌리 노드를 찾고 같지 않으면 합침
+def union(a, b):
+    rootA = find(a)
+    rootB = find(b)
+    if rootA != rootB:
+        parent[rootB] = rootA
+
+
+==컨테이너의 데이터가 문자열==
+1. parent = dict()로 선언하고 
+
+2. 포함된 노드 수는 count = dict()로 선언해서 union 함수에서 하위 count를 더해준다
+
+
+def find(x):
+    if parent[x] != x:
+        parent[x] = find(parent[x])
+    return parent[x]
+
+def union(a, b):
+    rootA = find(a)
+    rootB = find(b)
+
+    if rootA == rootB:
+        return
+
+    parent[rootA] = rootB
+    count[rootB] += count[rootA]
+    return
+
+
+import sys
+sys.setrecursionlimit(200000)
+
+T = int(sys.stdin.readline())
+
+for _ in range(T):
+    F = int(sys.stdin.readline())
+
+    parent = dict()
+    count = dict()
+
+    for _ in range(F):
+        a, b = map(str, sys.stdin.readline().split())
+
+        if a not in parent:
+            parent[a] = a
+            count[a] = 1
+
+        if b not in parent:
+            parent[b] = b
+            count[b] = 1
+
+        union(a, b)
+
+        print(count[find(a)])
