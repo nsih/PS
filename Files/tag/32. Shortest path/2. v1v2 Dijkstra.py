@@ -8,16 +8,16 @@ def Dijkstra(start):
         #가중치 정점
         wei, now = heapq.heappop(heap)
 
-        #이미 처리됐으면 넘어감
+        #더 짧은거 있으면 그냥 넘어감
         if dp[now] < wei:
             continue
 
         #현재 정점의 간선 순회
         for dw, du in graph[now]:
-            next_wei = dw + wei
-            if next_wei < dp[du]:   #최소거리를 찾으면 적용
-                dp[du] = next_wei
-                heapq.heappush(heap,(next_wei,du))
+            nextWei = dw + wei
+            if nextWei < dp[du]:   #최소거리를 찾으면 적용
+                dp[du] = nextWei
+                heapq.heappush(heap,(nextWei,du))
 
     return dp
 

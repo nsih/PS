@@ -43,10 +43,10 @@ for _ in range(T):
         graph[a].append((d, b))
         graph[b].append((d, a))
 
-    # 목적지 후보목록
-    tLst = []
-    for _ in range(t):
-        tLst.append(int(sys.stdin.readline()))
+        # 목적지 후보목록
+        tLst = []
+        for _ in range(t):
+            tLst.append(int(sys.stdin.readline()))
 
 
     result = []
